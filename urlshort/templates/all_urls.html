@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Short URLS{% endblock %}
+
+{% block main %}
+<div class="">
+  {% if codes %}
+  <center><h2>Access from here:</h2></center>
+  <br>
+  <br>
+  <ul>
+    {% set color = 'black' %}
+    {% set count = namespace(value=0) %}
+    {% for code in codes %}
+      <a href="{{ url_for('urlshort.redirect_to_url', code=code)}}" target="_blank">
+        <div style="width:30%;height:280px;float:left;margin-left:3.25%;margin-bottom:2%;background-color:{{color}};color:white">
+          <center><h1 style="margin-top:15%">{{ code }}</h1></center>
+        </div>
+      </a>
+      {% set count.value = count.value + 1 %}
+      {% if count.value % 1 == 0 %}
+
+      {% else %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% else %}
+<h1><center>You have created no urls. <a href="{{url_for('urlshort.home')}}" >Please go and create an url to see here</a></center></h1>>
+  {% endif %}
+</div>
+
+
+{% endblock %}
